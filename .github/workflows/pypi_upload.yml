@@ -13,9 +13,9 @@ permissions:
 
 jobs:
   main:
+    if: false
     name: sdist + pure wheel
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
 
     steps:
       - uses: actions/checkout@v4
@@ -40,6 +40,7 @@ jobs:
         run: twine upload --verbose -u '__token__' dist/*
 
   generate_wheels_matrix:
+    if: false
     name: generate wheels matrix
     runs-on: ubuntu-latest
     outputs:
@@ -79,6 +80,7 @@ jobs:
         run: echo "include=$(cat /tmp/matrix)" | tee -a $GITHUB_OUTPUT
 
   mypyc:
+    if: false
     name: mypyc wheels ${{ matrix.only }}
     needs: generate_wheels_matrix
     runs-on: ${{ matrix.os }}
@@ -106,6 +108,7 @@ jobs:
         run: pipx run twine upload --verbose -u '__token__' wheelhouse/*.whl
 
   update-stable-branch:
+    if: false
     name: Update stable branch
     needs: [main, mypyc]
     runs-on: ubuntu-latest

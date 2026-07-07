@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   configure:
+    if: false
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-config.outputs.matrix }}
@@ -37,6 +38,7 @@ jobs:
           python scripts/diff_shades_gha_helper.py config ${{ github.event_name }} ${{ matrix.mode }}
 
   analysis:
+    if: false
     name: analysis / ${{ matrix.mode }}
     needs: configure
     runs-on: ubuntu-latest

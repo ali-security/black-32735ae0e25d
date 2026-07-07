@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   docker:
-    if: github.repository == 'psf/black'
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
